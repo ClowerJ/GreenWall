@@ -16,8 +16,8 @@ steps:
       run: |
         FILE="commit_number.md"
         if [ ! -f "$FILE" ]; then
-          echo "How many times will this run" > "$FILE"
-          echo "commit number: 1" >> "$FILE"
+          echo "Another brick in the Green Wall" > "$FILE"
+          echo "Brick number: 1" >> "$FILE"
         else
           CURRENT_COUNT=$(grep -oP 'commit number: \K\d+' "$FILE")
           if [ -z "$CURRENT_COUNT" ]; then

@@ -5,8 +5,8 @@ on:
 
 jobs:
   commit:
-    runs-on: runs-on:ubuntu-22.04
-    #ubuntu-latest 
+    runs-on: ubuntu-latest
+    #runs-on:ubuntu-22.04#ubuntu-latest 
 
     steps:
     - name: Checkout repository
@@ -16,6 +16,7 @@ jobs:
 
     - name: Create file and commit
       run: |
+        set -x
         FILE="commit_number.md"
         if [ ! -f "$FILE" ]; then
           echo "Another brick in the Green Wall" > "$FILE"

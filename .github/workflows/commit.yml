@@ -1,6 +1,8 @@
+name: ClowerJ's Daily Commit
+
 on:
   schedule:
-    - cron: '30 14 * * *'
+    - cron: '*/1 * * * *'  # Runs every minute (adjust as needed)
 
 jobs:
   commit:
@@ -9,31 +11,27 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        ref: main 
 
     - name: Create file and commit
       run: |
-        set -x
         FILE="brick_number.md"
         if [ ! -f "$FILE" ]; then
-          echo "Another brick in the Green Wall" > "$FILE"
-          echo "Brick number: 1" >> "$FILE"
+          echo "Another brick in the green wall" > "$FILE"
+          echo "brick number: 1" >> "$FILE"
         else
-          CURRENT_COUNT=$(grep -o 'Brick number: [0-9]*' "$FILE" | awk '{print $3}')
+          CURRENT_COUNT=$(grep -oP 'brick number: \K\d+' "$FILE")
           if [ -z "$CURRENT_COUNT" ]; then
             CURRENT_COUNT=0
           fi
           NEXT_COUNT=$((CURRENT_COUNT + 1))
-          sed -i "/Brick number: /c\Brick number: $NEXT_COUNT" "$FILE"
+          sed -i "/brick number: /c\brick number: $NEXT_COUNT" "$FILE"
         fi
         git config --global user.name "ClowerJ"
         git config --global user.email "jclowers18@gmail.com"
         git add "$FILE"
-        git commit -m "Green wall engaged - Brick $NEXT_COUNT"
-        git push origin main
+        git commit -m "Another brick in the green wall"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ClowerJ/your-repo-name.git
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Debugging Step
-      run: |
-        cat brick_number.md
-        git config --list

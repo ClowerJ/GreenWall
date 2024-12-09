@@ -1,18 +1,14 @@
-
 on:
   schedule:
-    - cron: '0 0 * * *'  # Every day at midnight UTC to runs every 7-8 min set cron to '*/1 * * * *'
+    - cron: '*/1 * * * *'
 
 jobs:
   commit:
     runs-on: ubuntu-latest
-    #runs-on:ubuntu-22.04#ubuntu-latest 
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        ref: main 
 
     - name: Create file and commit
       run: |
@@ -22,7 +18,7 @@ jobs:
           echo "Another brick in the Green Wall" > "$FILE"
           echo "Brick number: 1" >> "$FILE"
         else
-          CURRENT_COUNT=$(grep -oP 'Brick number: \K\d+' "$FILE")
+          CURRENT_COUNT=$(grep -o 'Brick number: [0-9]*' "$FILE" | awk '{print $3}')
           if [ -z "$CURRENT_COUNT" ]; then
             CURRENT_COUNT=0
           fi
@@ -32,6 +28,12 @@ jobs:
         git config --global user.name "ClowerJ"
         git config --global user.email "jclowers18@gmail.com"
         git add "$FILE"
-        git commit -m "Green wall engaged"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ClowerJ/GreenWall.git
+        git commit -m "Green wall engaged - Brick $NEXT_COUNT"
+        git push origin main
+      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Debugging Step
+      run: |
+        cat commit_number.md
+        git config --list

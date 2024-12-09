@@ -13,7 +13,7 @@ jobs:
     - name: Create file and commit
       run: |
         set -x
-        FILE="commit_number.md"
+        FILE="brick_number.md"
         if [ ! -f "$FILE" ]; then
           echo "Another brick in the Green Wall" > "$FILE"
           echo "Brick number: 1" >> "$FILE"
@@ -35,5 +35,5 @@ jobs:
 
     - name: Debugging Step
       run: |
-        cat commit_number.md
+        cat brick_number.md
         git config --list

@@ -32,6 +32,6 @@ jobs:
         git config --global user.email "jclowers18@gmail.com"
         git add "$FILE"
         git commit -m "Another brick in the green wall"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ClowerJ/your-repo-name.git
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ClowerJ/GreenWall.git
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

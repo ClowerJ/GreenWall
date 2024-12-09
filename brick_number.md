@@ -1,2 +1,2 @@
 Another brick in the green wall
-brick number: 1
+brick number: 2

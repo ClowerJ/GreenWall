@@ -2,7 +2,7 @@ name: ClowerJ's Daily Commit
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # Runs every minute (adjust as needed)
+    - cron: '0 15 * * *'  # Runs every day at 3 PM UTC, which is 9 AM CST
 
 jobs:
   commit:

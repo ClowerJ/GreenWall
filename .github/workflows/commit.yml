@@ -20,12 +20,12 @@ jobs:
           echo "Another brick in the Green Wall" > "$FILE"
           echo "Brick number: 1" >> "$FILE"
         else
-          CURRENT_COUNT=$(grep -oP 'commit number: \K\d+' "$FILE")
+          CURRENT_COUNT=$(grep -oP 'Brick number: \K\d+' "$FILE")
           if [ -z "$CURRENT_COUNT" ]; then
             CURRENT_COUNT=0
           fi
           NEXT_COUNT=$((CURRENT_COUNT + 1))
-          sed -i "/commit number: /c\commit number: $NEXT_COUNT" "$FILE"
+          sed -i "/Brick number: /c\Brick number: $NEXT_COUNT" "$FILE"
         fi
         git config --global user.name "ClowerJ"
         git config --global user.email "jclowers18@gmail.com"

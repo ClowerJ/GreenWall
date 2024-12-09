@@ -2,7 +2,7 @@ name: ClowerJ's Daily Commit
 
 on:
   schedule:
-    - cron: '30 16 * * *'  # 10:30AM CST
+    - cron: '0 0-20/4 * * *'  # 4 hour intervals
 
 jobs:
   commit:

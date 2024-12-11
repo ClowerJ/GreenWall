@@ -2,7 +2,7 @@ name: Building the Green Wall
 
 on:
   schedule:
-    - cron: '0 0-20/4 * * *'  # 4 hour intervals
+    - cron: '0 0-12/4 * * *'  # 4 hour intervals
 
 jobs:
   commit:

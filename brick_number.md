@@ -1,2 +1,2 @@
 Another brick in the green wall
-brick number: 505
+brick number: 506
